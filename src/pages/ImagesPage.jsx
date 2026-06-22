@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { useImages } from '../hooks/useImages'
 import ImageCard from '../components/ImageCard'
 import ImageModal from '../components/ImageModal'
@@ -14,24 +13,24 @@ export default function ImagesPage() {
     isModalOpen,
   } = useImages()
 
-  const resultCount = filteredImages.length
-  const gridImages = useMemo(() => filteredImages, [filteredImages])
-
   return (
-    <div className="images-page">
-      <section className="page-header">
-        <h2>Images</h2>
-        <button type="button" className="button button-primary">
+    <div>
+      <section className="mb-3 flex min-h-[52px] items-center justify-between gap-4 border-b border-[#e9ebf2] pb-3.5 max-sm:flex-col max-sm:items-start">
+        <h2 className="m-0 text-[22px] font-medium text-[#020b26]">Images</h2>
+        <button
+          type="button"
+          className="inline-flex min-h-[38px] items-center justify-center gap-2.5 rounded bg-[#3A57E8] px-5 py-2 text-white"
+        >
           <FiImage />
           Add Image
         </button>
       </section>
 
-      <section className="recent-section">
-        <div className="section-heading">
-          <h3>Recently viewed</h3>
+      <section className="mb-9 mt-3">
+        <div className="mb-3.5 flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start">
+          <h3 className="m-0 text-2xl font-medium text-[#020b26]">Recently viewed</h3>
         </div>
-        <div className="image-grid image-grid-recent">
+        <div className="grid auto-cols-[minmax(250px,1fr)] grid-flow-col gap-7 overflow-x-auto pb-3 md:auto-cols-[minmax(280px,1fr)] xl:auto-cols-[minmax(250px,1fr)]">
           {recentImages.map((image) => (
             <ImageCard
               key={image.id}
@@ -43,19 +42,23 @@ export default function ImagesPage() {
         </div>
       </section>
 
-      <section className="all-images-section">
-        <div className="section-heading">
-          <h3>All Image</h3>
-          {resultCount === 0 ? null : <p className="search-meta">{resultCount} images found</p>}
+      <section className="mb-9">
+        <div className="mb-3.5 flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start">
+          <h3 className="m-0 text-2xl font-medium text-[#020b26]">All Image</h3>
+          {filteredImages.length > 0 && (
+            <p className="m-0 text-sm text-[#7f8ba3]">{filteredImages.length} images found</p>
+          )}
         </div>
-        {gridImages.length === 0 ? (
-          <div className="empty-state">
-            <h3>No images match your search.</h3>
-            <p>Try a different keyword or clear the search field.</p>
+        {filteredImages.length === 0 ? (
+          <div className="rounded-lg bg-white p-10 text-center text-[#7f8ba3]">
+            <h3 className="m-0 mb-2 text-xl font-medium text-[#020b26]">
+              No images match your search.
+            </h3>
+            <p className="m-0">Try a different keyword or clear the search field.</p>
           </div>
         ) : (
-          <div className="image-grid">
-            {gridImages.map((image) => (
+          <div className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-4">
+            {filteredImages.map((image) => (
               <ImageCard key={image.id} image={image} onClick={openImage} />
             ))}
           </div>

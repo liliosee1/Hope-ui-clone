@@ -9,23 +9,29 @@ function relativeTime(dateString) {
   return 'a month ago'
 }
 
-export default function ImageCard({ image, onClick, variant = 'grid' }) {
+export default function ImageCard({ image, onClick }) {
   return (
     <button
       type="button"
-      className={`image-card ${variant === 'scroller' ? 'image-card-scroller' : ''}`}
+      className="w-full min-w-0 overflow-hidden rounded-lg border-0 bg-white text-left transition hover:shadow-[0_14px_34px_rgba(39,53,97,0.08)]"
       onClick={() => onClick(image)}
       aria-label={`Open preview for ${image.name}`}
     >
-      <div className="image-card-thumbnail">
-        <img src={image.url} alt={image.name} />
+      <div className="mx-3.5 mt-3.5 aspect-[1.44/1] overflow-hidden rounded bg-[#e9edf6]">
+        <img className="h-full w-full object-cover" src={image.url} alt={image.name} />
       </div>
-      <div className="image-card-body">
-        <p className="image-card-date">Created on {image.createdAt}</p>
-        <h2 className="image-card-title">{image.name}</h2>
-        <div className="image-card-meta">
-          <span className="image-card-badge"><FiImage /></span>
-          <span>You opened <b>{relativeTime(image.lastOpenedAt)}</b></span>
+      <div className="px-3.5 pb-4 pt-2">
+        <p className="m-0 mb-2 text-xs text-[#7f8ba3]">Created on {image.createdAt}</p>
+        <h2 className="m-0 mb-1.5 flex items-center gap-2 text-[15px] font-medium text-[#020b26]">
+          <span className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded bg-[#d9e1ff] text-[#3A57E8]">
+            <FiImage className="h-3 w-3" />
+          </span>
+          <span className="truncate">{image.name}</span>
+        </h2>
+        <div className="flex items-center gap-2 text-xs text-[#72809a]">
+          <span>
+            You opened <b className="font-medium text-[#3A57E8]">{relativeTime(image.lastOpenedAt)}</b>
+          </span>
         </div>
       </div>
     </button>

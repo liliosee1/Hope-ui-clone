@@ -1,17 +1,9 @@
+@import "tailwindcss";
+
 :root {
   color-scheme: light;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #373f5b;
-  background: #f5f6fa;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --app-font-size: 16px;
 }
 
 html,
@@ -23,24 +15,23 @@ body,
 body {
   margin: 0;
   background: #f5f6fa;
+  color: #071434;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
+body[data-ui-font='14'] {
+  --app-font-size: 14px;
 }
 
-img {
-  display: block;
-  max-width: 100%;
+body[data-ui-font='16'] {
+  --app-font-size: 16px;
 }
 
-textarea,
-input {
-  border: none;
-  outline: none;
+body[data-ui-font='18'] {
+  --app-font-size: 18px;
 }
 
 ::selection {

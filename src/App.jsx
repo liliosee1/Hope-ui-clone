@@ -7,7 +7,7 @@ import PlaceholderPage from './pages/PlaceholderPage'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/file-manager/dashboard" replace />} />
+      <Route path="/" element={<Navigate to="/file-manager/images" replace />} />
       <Route path="/file-manager" element={<Layout />}>
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="images" element={<ImagesPage />} />
@@ -16,7 +16,7 @@ function App() {
         <Route path="all-files" element={<PlaceholderPage title="All Files" />} />
         <Route path="trash" element={<PlaceholderPage title="Trash" />} />
       </Route>
-      <Route path="*" element={<Navigate to="/file-manager/dashboard" replace />} />
+      <Route path="*" element={<Navigate to="/file-manager/images" replace />} />
     </Routes>
   )
 }
