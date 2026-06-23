@@ -30,14 +30,9 @@ export default function ImagesPage() {
         <div className="mb-3.5 flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start">
           <h3 className="m-0 text-2xl font-medium text-[#020b26]">Recently viewed</h3>
         </div>
-        <div className="grid auto-cols-[minmax(250px,1fr)] grid-flow-col gap-7 overflow-x-auto pb-3 md:auto-cols-[minmax(280px,1fr)] xl:auto-cols-[minmax(250px,1fr)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 pb-3">
           {recentImages.map((image) => (
-            <ImageCard
-              key={image.id}
-              image={image}
-              onClick={openImage}
-              variant="scroller"
-            />
+            <ImageCard key={image.id} image={image} onClick={openImage} />
           ))}
         </div>
       </section>
